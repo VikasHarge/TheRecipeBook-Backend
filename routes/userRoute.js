@@ -25,6 +25,6 @@ router.route("/login").post(loginUser);
 router.route("/me").get(isAuthenticatedUser, getUserDetails);
 
 //Save Recipes
-router.route('/saveRecipe').get(isAuthenticatedUser, saveRecipe)
+router.route('/saveRecipe').post(isAuthenticatedUser, saveRecipe)
 
 module.exports = router

@@ -18,7 +18,6 @@ exports.isAuthenticatedUser = catchAsyncError( async(req, res, next)=>{
 
     //saving user in req.user to use further
     req.user = await User.findById(decoadedData.id)
-
     next();
 
 })
