@@ -2,8 +2,13 @@ const express = require('express');
 
 
 const {
-    registerUser
+    registerUser,
+    loginUser,
+    getUserDetails,
+    saveRecipe
 } = require('../controlls/userControllers')
+
+const  { isAuthenticatedUser, authorizeRole } = require("../middleware/auth");
 
 
 
@@ -19,7 +24,7 @@ router.route("/login").post(loginUser);
 //Get current user Details
 router.route("/me").get(isAuthenticatedUser, getUserDetails);
 
-
-
+//Save Recipes
+router.route('/saveRecipe').get(isAuthenticatedUser, saveRecipe)
 
 module.exports = router

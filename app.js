@@ -20,8 +20,11 @@ app.use(cors({origin : true, credentials : true}))
 //Cookie-parser
 app.use(cookieParser('123-456-789'))
 
+//Import Router
+const userRoute  = require('./routes/userRoute')
 
-// app.use('/user', userRoute)
+
+app.use('/user', userRoute)
 
 
 //Middle Ware to handle Error

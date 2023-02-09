@@ -6,7 +6,8 @@ const User = require("../models/userModel");
 const SentJWT = require("../utils/jwt");
 
 //User Registration
-exports.registerUser = catchAsyncError(async (req, res, next) => {
+exports.registerUser = async (req, res, next) => {
+
   const { name, email, password } = req.body;
 
   const user = await User.findOne({ email: email });
@@ -22,11 +23,11 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
   });
 
   SentJWT(newUser, 201, res);
-});
+};
 
 // Login FUnction
-
 exports.loginUser = catchAsyncError(async (req, res, next) => {
+    console.log("login user call");
   const { email, password } = req.body;
 
   //Checking if pass and email entered
@@ -56,7 +57,7 @@ exports.loginUser = catchAsyncError(async (req, res, next) => {
   user.resetPasswordExpire = undefined;
   await user.save();
 
-  sendToken(user, 200, res);
+  SentJWT(user, 200, res);
 });
 
 //Logout Funtion
@@ -86,5 +87,34 @@ exports.getUserDetails = catchAsyncError( async(req, res, next)=>{
       user,
     })
   
+  })
+
+
+  //Save Recipe
+  exports.saveRecipe = catchAsyncError( async (req, res, next)=>{
+
+    const {recipeName, recipeImage, recipeId} = req.body;
+
+    const newRecipe = {
+        title : recipeName,
+        image : recipeImage,
+        recipeId : recipeId,
+    }
+
+    const user = await User.findById(req.user.id);
+
+    if(!user){
+        return next(ErrorHandler("Please Login To add to fevourite"));
+    }
+
+    user.savedRecipes.push(newRecipe);
+
+    await user.save({ validateBeforeSave: false })
+
+    res.status(200).json({
+        success: true,
+        message : "recipe Added"
+      });
+
   })
   

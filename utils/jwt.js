@@ -7,7 +7,7 @@ app.use(cookieParser())
 
 const SentJWT = (user, statusCode, res)=>{
     //Get Token
-    const token = admin.getJWT();
+    const token = user.getJWTToken();
 
     const options = {
         expires : new Date(
