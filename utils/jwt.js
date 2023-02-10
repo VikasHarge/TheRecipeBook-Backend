@@ -18,8 +18,10 @@ const SentJWT = (user, statusCode, res)=>{
         sercue : true,
     }
 
+    console.log(res)
+
     //Sending Cookies
-    res.cookie('JWTtoken', token, options)
+    res.cookie('recipeUserToken', token, options)
     res.status(statusCode).json({
         success : true,
         message : "Logged in succesfully",

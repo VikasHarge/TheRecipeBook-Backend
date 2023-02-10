@@ -6,15 +6,15 @@ const User = require("../models/userModel");
 
 exports.isAuthenticatedUser = catchAsyncError( async(req, res, next)=>{
 
-    const { JWTtoken } = req.cookies;
+    const { recipeUserToken } = req.cookies;
 
-    console.log(JWTtoken);
+    console.log(recipeUserToken);
 
-    if(!JWTtoken){
+    if(!recipeUserToken){
         return next(new ErrorHandler("Please Login to access this resourse", 401));
     }
 
-    const decoadedData = jwt.verify(JWTtoken, process.env.JWT_SECRET);
+    const decoadedData = jwt.verify(recipeUserToken, process.env.JWT_SECRET);
 
     //saving user in req.user to use further
     req.user = await User.findById(decoadedData.id)

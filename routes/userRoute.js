@@ -5,7 +5,8 @@ const {
     registerUser,
     loginUser,
     getUserDetails,
-    saveRecipe
+    saveRecipe,
+    logoutUser
 } = require('../controlls/userControllers')
 
 const  { isAuthenticatedUser, authorizeRole } = require("../middleware/auth");
@@ -20,6 +21,9 @@ router.route("/register").post(registerUser);
 
 //Login Route
 router.route("/login").post(loginUser);
+
+//Logout Route
+router.route("/logout").get(logoutUser);
 
 //Get current user Details
 router.route("/me").get(isAuthenticatedUser, getUserDetails);

@@ -18,7 +18,7 @@ app.use(express.json())
 app.use(cors({origin : true, credentials : true}))
 
 //Cookie-parser
-app.use(cookieParser('123-456-789'))
+app.use(cookieParser(''))
 
 //Import Router
 const userRoute  = require('./routes/userRoute')
