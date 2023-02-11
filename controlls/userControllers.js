@@ -94,7 +94,9 @@ exports.getUserDetails = catchAsyncError( async(req, res, next)=>{
 
 
   //Save Recipe
-  exports.saveRecipe = catchAsyncError( async (req, res, next)=>{
+  exports.saveRecipe =  catchAsyncError(async (req, res, next)=>{
+
+    console.log("Recipe add runs");
 
     const {recipeName, recipeImage, recipeId} = req.body;
 
