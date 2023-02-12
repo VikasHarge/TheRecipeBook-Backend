@@ -7,6 +7,7 @@ const SentJWT = require("../utils/jwt");
 
 //User Registration
 exports.registerUser = catchAsyncError(async (req, res, next) => {
+  console.log("Register runs");
 
   const { name, email, password } = req.body;
 
@@ -64,6 +65,7 @@ SentJWT(user, 200, res);
 
 //Logout Funtion
 exports.logoutUser = catchAsyncError(async (req, res, next) => {
+    console.log("Logout runs");
 
     console.log("res cookie", res.cookie);
   
@@ -81,6 +83,8 @@ exports.logoutUser = catchAsyncError(async (req, res, next) => {
 
   //Get User Details
 exports.getUserDetails = catchAsyncError( async(req, res, next)=>{
+  console.log("Get user runs");
+
 
     const user = await User.findById(req.user.id);
   

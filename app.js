@@ -15,10 +15,10 @@ app.use(bodyParser.urlencoded({extended : true}))
 app.use(express.json())
 
 //Cors Added
-app.use(cors({origin : true, credentials : true}))
+app.use(cors({origin : true, credentials : true, optionsSuccessStatus: 200}))
 
 //Cookie-parser
-app.use(cookieParser(''))
+app.use(cookieParser())
 
 //Import Router
 const userRoute  = require('./routes/userRoute')
